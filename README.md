@@ -4,7 +4,7 @@ If you have Docker and Linux installed, you can clone and run this mock api
 
 In a linux system, do the following commands
 
-    cd "some-directory-of-your-choice"+
+    cd "some-directory-of-your-choice"
 
 Clone the repository
 
