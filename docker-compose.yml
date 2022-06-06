@@ -1,0 +1,22 @@
+services:
+  api:
+    container_name: node-api
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      PORT: 8080
+      ACCESS_SECRET: yourrandomaccesssecrethere
+      DB_PATH : mongodb://db/awesomestore  
+    
+  
+  db:
+    container_name: db
+    image: mongo:4.0-xenial
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
