@@ -1,4 +1,4 @@
-# platform-restapi
+# Platform-restapi
 
 If you have Docker and Linux installed, you can clone and run this mock api
 
