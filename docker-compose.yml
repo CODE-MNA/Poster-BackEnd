@@ -7,7 +7,7 @@ services:
     environment:
       PORT: 8080
       ACCESS_SECRET: yourrandomaccesssecrethere
-      DB_PATH : mongodb://db/awesomestore  
+      DB_PATH : mongodb://db/mockmongodb 
     
   
   db:
