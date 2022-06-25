@@ -19,3 +19,9 @@ Use docker compose to run the app
      docker-compose up --build
 
 The program should run on your localhost with your own mongo db server instance as well
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+This api is WIP, only authentication has been implemented meaning you can start creating an api based on basic user authentication
+using this template
