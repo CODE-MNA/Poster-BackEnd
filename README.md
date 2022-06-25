@@ -23,5 +23,5 @@ The program should run on your localhost with your own mongo db server instance 
 
 ------------------------------------------------------------------------------------------------------------------------
 
-This api is WIP, only authentication has been implemented meaning you can start creating an api based on basic user authentication
-using this template
+*This API is WIP, only authentication has been implemented meaning you can start creating an API based on basic user authentication
+using this template*
