@@ -5,13 +5,13 @@ const postSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    userId:{
+    user:{
         type: mongoose.Types.ObjectId,
         required: true,
         unique: true
     },
     comments: {
-        type: Array,
+        type: [mongoose.Types.ObjectId],
         required: true,
         minLength:7
     }
