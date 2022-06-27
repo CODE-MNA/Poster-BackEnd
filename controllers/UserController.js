@@ -15,7 +15,7 @@ module.exports = {
         ).catch((err) =>
             res.status(403).json({error:"Couldn't Query Users, : " + err}),
         )
-
+//62b94e4789f67b963d22249c
     },
 
     getById : (req, res) =>{
@@ -27,7 +27,9 @@ module.exports = {
         }
         //Return User with ID id
         User.findById(idParam).exec().then(
-            (data) => res.status(200).json(data)
+            (data) => {
+                
+                data ? res.status(200).json(data) : res.status(200).send({message:"No found"}) }
             ).catch((err)=>
                 res.status(403).json({error:"Error occured querying database - " + err})
             )

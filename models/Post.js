@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
 
 const postSchema = mongoose.Schema({
-   body: {
+    heading: {
+        type: String,
+        required: true,
+        maxLength:70
+
+    },
+   content: {
         type: String,
         required: true
     },
@@ -13,7 +19,6 @@ const postSchema = mongoose.Schema({
     comments: {
         type: [mongoose.Types.ObjectId],
         required: true,
-        minLength:7
     }
 
 },{
