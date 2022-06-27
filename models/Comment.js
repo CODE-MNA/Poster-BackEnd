@@ -19,6 +19,6 @@ const commentSchema = mongoose.Schema({
         minLength:7
     }
 
-})
+},{timestamps:true})
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('Comment', commentSchema)

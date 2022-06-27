@@ -16,6 +16,8 @@ const postSchema = mongoose.Schema({
         minLength:7
     }
 
+},{
+    timestamps: true
 })
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('Post', postSchema)
