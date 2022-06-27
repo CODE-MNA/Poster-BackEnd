@@ -83,7 +83,7 @@ module.exports = {
            
             if(truth){
                 let encrypted = generateAccessToken({id:user._id});
-                return res.status(200).send(encrypted);
+                return res.status(200).send({token:encrypted,loggedUser:user});
 
             }
         }

@@ -2,9 +2,16 @@ const User = require("../models/User")
 
 module.exports = {
     get:(req, res) =>{
+        let queries = req.query
+       
+     
 
         //Return All Users in form of Json
-        User.find({}).exec().then( (data) => res.status(200).json(data)
+        User.find(queries).exec().then( (data) => 
+        {
+            if(data.length == 0) return res.status(200).json({message: "no users found"})
+            res.status(200).json(data)
+        }
         ).catch((err) =>
             res.status(403).json({error:"Couldn't Query Users, : " + err}),
         )
