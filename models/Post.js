@@ -13,12 +13,15 @@ const postSchema = mongoose.Schema({
     },
     user:{
         type: mongoose.Types.ObjectId,
-        required: true,
-        unique: true
+        required: true
     },
     comments: {
         type: [mongoose.Types.ObjectId],
         required: true,
+    },
+    likes:{
+        type:Number,
+        required: true
     }
 
 },{

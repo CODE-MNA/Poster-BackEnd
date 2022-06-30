@@ -11,6 +11,8 @@ router.get('/:id/posts',post.get);
 
 //TODO ADD PAGINATION
 router.post('/:id/posts',authoriseUser,post.newPost);
+router.delete('/:id/posts/:postId',authoriseUser,post.deleteSingle);
+router.delete('/:id/posts',authoriseUser,post.deleteAllPosts);
 
 
 module.exports = router;

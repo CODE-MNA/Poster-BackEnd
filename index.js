@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const db = require('./config/db')
-
+const cors = require('cors')
 
 //Importing Routes
 const userRoute = require('./routes/User');
@@ -14,6 +14,9 @@ db(process.env.DB_PATH);
 const PORT = process.env.PORT || 8000;
 
 //Middlewares
+app.use(cors({
+    origin: 'https://localhost:3000'
+}))
 app.use(express.json());
 
 //Using routes
