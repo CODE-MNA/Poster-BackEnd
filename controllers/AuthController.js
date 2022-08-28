@@ -249,7 +249,7 @@ var ProcessMail = async (user)=>{
 
    const signed =  jwt.sign({id : user._id},process.env.VERIFY_SECRET,{expiresIn:"1h"})
 
-   const verifyURL = `http://localhost:${process.env.PORT}/auth/verify/${signed}`
+   const verifyURL = `${process.env.PUBLIC_URL}/auth/verify/${signed}`
 
     let errorMail = "";
 
