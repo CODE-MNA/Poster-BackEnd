@@ -19,10 +19,10 @@ const postSchema = mongoose.Schema({
         type: [mongoose.Types.ObjectId],
         required: true,
     },
-    likes:{
-        type:Number,
-        required: true
-    }
+    // likes:{
+    //     type:Number,
+    //     required: true
+    // }
 
 },{
     timestamps: true

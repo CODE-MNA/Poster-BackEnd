@@ -6,6 +6,7 @@ const cors = require('cors')
 //Importing Routes
 const userRoute = require('./routes/User');
 const authRoute = require('./routes/Auth');
+const { errorMiddleware } = require('./middlewares/errorhandling');
 
 require('dotenv').config();
 
@@ -15,7 +16,7 @@ const PORT = process.env.PORT || 8000;
 
 //Middlewares
 app.use(cors({
-    origin: 'https://localhost:3000'
+    origin: '*'
 }))
 app.use(express.json());
 
@@ -23,7 +24,19 @@ app.use(express.json());
 app.use('/users',userRoute);
 app.use('/auth',authRoute);
 
+app.get('/ping',(req, res,next) => {
+    try{
+
+        res.status(200).send({pong: true});
+    }catch(err){
+        res.status(404).send({pong: false});
+    }
+})
+
+//Using error middlewares
+app.use(errorMiddleware)
+
 
 app.listen(PORT,()=>{
-    console.log("Server started at : http://localhost:" + PORT )
+    console.log("Server started at : "+  PORT )
 })

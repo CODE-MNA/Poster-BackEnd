@@ -14,6 +14,16 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minLength:7
+    },
+    confirmed:{
+        type: Boolean,
+        required: true,
+        default: false
+        
+    },
+    refresh: {
+        type: String,
+        required: false
     }
 
 })

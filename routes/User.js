@@ -7,7 +7,8 @@ const post = require('../controllers/PostController')
 
 router.get('/',authoriseUser,user.get);
 router.get('/:id',authoriseUser,user.getById);
-router.get('/:id/posts',post.get);
+router.get('/search',authoriseUser,user.search);
+router.get('/:id/posts', authoriseUser,post.get);
 
 //TODO ADD PAGINATION
 router.post('/:id/posts',authoriseUser,post.newPost);
