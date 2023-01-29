@@ -1,4 +1,4 @@
-# Platform-restapi
+# Poster API
 
 If you have Docker and git in your system, you can clone and run this mock api
 
