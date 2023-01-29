@@ -249,7 +249,7 @@ var ProcessMail = async (user)=>{
 
    const signed =  jwt.sign({id : user._id},process.env.VERIFY_SECRET,{expiresIn:"1h"})
 
-   const verifyURL = `https://poster-mna.herokuapp.com/auth/verify/${signed}`
+   const verifyURL = `https://localhost:{process.env.PORT}/auth/verify/${signed}`
 
     let errorMail = "";
 
