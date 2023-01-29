@@ -1,8 +1,8 @@
 # Platform-restapi
 
-If you have Docker and Linux installed, you can clone and run this mock api
+If you have Docker and git in your system, you can clone and run this mock api
 
-In a linux system, do the following commands
+In a terminal, do the following commands
 
     cd "some-directory-of-your-choice"
 
@@ -23,5 +23,3 @@ The program should run on your localhost with your own mongo db server instance 
 
 ------------------------------------------------------------------------------------------------------------------------
 
-*This API is WIP, only authentication has been implemented meaning you can start creating an API based on basic user authentication
-using this template*
