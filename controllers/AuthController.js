@@ -19,8 +19,6 @@ module.exports = {
         if(validationError){
            return res.status(401).send({message:validationError.details[0].message})
         }
-       
-        
 
        const {name,email,password,passwordConfirmation} = req.body;
 
@@ -32,20 +30,11 @@ module.exports = {
 
        try{
 
-       
         let user = await User.findOne({email:email}).exec()
 
         if(user){
-            
-            //email
-
-
             return res.status(401).send({message:"Email already exists"})
         }
-
-
-
-        
 
 
         const hashedPassword = await bcrypt.hash(password,10)
@@ -57,19 +46,11 @@ module.exports = {
     }catch(err){
         return res.status(402).send({message:err.message});
     }
-    
-
 
         let errorMail = await ProcessMail(savedUser)
-        //------------------------------------------------------------------------------------------------
-    console.log(errorMail)
+     
+
         res.status(200).send({user:savedUser,mailError:errorMail});
-
-
-   
-
-      
-        
 
     },
     
@@ -89,37 +70,20 @@ module.exports = {
             return res.status(403).send({message:"Invalid Credentials"});
         }
 
-      
-
     try{
-        
-        
         let user = await  User.findOne({email:req.body.email}).exec()
-
-        
         if(user){
-
             if(user.confirmed === false){
-
                 let errEmail = await ProcessMail(user)
-
-                if(errEmail === ""){
-                    
-
-
+                if(errEmail === ""){              
                     res.status(400).send({message:"User Not Activated, sending verification email"});
                 }else{
                     res.status(400).send({message:"User Not Activated, couldn't send verification email"});
 
                 }
-
-
              return
             }
-          
-            let truth = await bcrypt.compare(req.body.password,user.password);
-
-           
+            let truth = await bcrypt.compare(req.body.password,user.password);    
             if(truth){
                 let encrypted = generateAccessToken({id:user._id});
                 let returnToken = user.refreshToken
@@ -140,32 +104,23 @@ module.exports = {
                     confirmed:user.confirmed
                 }
                 return res.status(200).send({token:encrypted,userData:returnUser,reloggerToken:returnToken});
-
             }
-        }
-      
+        }    
             return res.status(401).send({message:"Invalid Credentials"});
     }catch(err){
         res.status(402).send({message:"DATABASE ERROR"});
     }
-
-      
-    
      
     },
 
-    //Kinda useless cuz in this api we always searching db so not used for now..
+   
     refresh: async (req, res) =>{        
-        
-
         //Find one where REFRESH TOKENS MATCH (DATABASE AND COOKIES)
        const user = await User.findOne({refresh:req.body.token}).exec() ;
-       
        try{
            
          let userData = jwt.verify(user.refresh,process.env.REFRESH_SECRET)
          const newAccesssToken = generateAccessToken({id:userData.id})
-
          let returnUser = {
              _id:user._id,
              email:user.email,
@@ -183,14 +138,11 @@ module.exports = {
     },
 
     logout:(req, res,next)=>{
-
-      
     },
 
     verify:  (req, res,next) =>{
         const activationToken = req.params.activationToken
         const activatedID = jwt.verify(activationToken,process.env.VERIFY_SECRET)
-
         User.findById(activatedID.id).exec().then(async (user) =>{
             if(user){
                 user.confirmed = true
@@ -248,11 +200,8 @@ var ProcessMail = async (user)=>{
     })
 
    const signed =  jwt.sign({id : user._id},process.env.VERIFY_SECRET,{expiresIn:"1h"})
-
    const verifyURL = `https://localhost:${process.env.PORT}/auth/verify/${signed}`
-
     let errorMail = "";
-
     gmailMailer.sendMail({
         from: "Poster Activator"+ " " + process.env.EMAIL,
         to:user.email,
