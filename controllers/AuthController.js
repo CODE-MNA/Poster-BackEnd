@@ -100,8 +100,8 @@ module.exports = {
         if(user){
 
             if(user.confirmed === false){
-
-                let errEmail = await ProcessMail(user)
+                let url = `${req.protocol}://${req.hostname}`
+                let errEmail = await ProcessMail(user,url )
 
                 if(errEmail === ""){
                     
@@ -232,7 +232,7 @@ var appendRefreshCookie = (res,refreshToken)=>{
 }
 
 
-var ProcessMail = async (user)=>{
+var ProcessMail = async (user, BaseHostname)=>{
     
     const gmailMailer = mailer.createTransport({
         service:"gmail",
@@ -249,7 +249,7 @@ var ProcessMail = async (user)=>{
 
    const signed =  jwt.sign({id : user._id},process.env.VERIFY_SECRET,{expiresIn:"1h"})
 
-   const verifyURL = `https://localhost:${process.env.PORT}/auth/verify/${signed}`
+   const verifyURL = `${BaseHostname}:${process.env.PORT}/auth/verify/${signed}`
 
     let errorMail = "";
 
