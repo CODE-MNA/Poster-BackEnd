@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poster Backend</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    color: #ddd; /* Darker grey */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000; /* Dark background */
+  }
+
+  .container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark with opacity */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #ff5555; /* Crimson color */
+    font-size: 2.5em;
+    animation: slideInLeft 1s ease-in-out;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 1.2em;
+    animation: slideInRight 1s ease-in-out;
+    color: #ddd; /* Light grey */
+  }
+
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: 10px 10px;
+    background-image:
+      linear-gradient(to right, #322 1px, transparent 1px),
+      linear-gradient(to bottom, #333 1px, transparent 1px);
+    animation: changeNumbers 7s infinite;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideInLeft {
+    0% { transform: translateX(-50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideInRight {
+    0% { transform: translateX(50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes changeNumbers {
+    0% { background-position: 0 0; opacity:1 }
+	50% {opacity:0.4}
+	 100% { background-position:30px 30px; opacity:1 }
+  }
+</style>
+</head>
+<body>
+<div id="background"></div>
+<div class="container">
+  <h2>POSTER BACKEND</h2>
+  <br>
+  <p>Verification failed, Please Try logging again if you require the link again and try verification with a valid link.</p>
+</div>
+</body>
+</html>

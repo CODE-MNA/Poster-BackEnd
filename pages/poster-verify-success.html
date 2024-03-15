@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poster Backend</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+<style>
+  
+
+  body {
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #ddd; /* Darker grey */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000; /* Dark background */
+  }
+
+  .container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark with opacity */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #55aaff; /* Azure light blue */
+    font-size: 2.5em;
+    animation: slideInLeft 1s ease-in-out;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 1.2em;
+    animation: slideInRight 1s ease-in-out;
+  }
+
+  #background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    perspective: 1000px; /* Add perspective for 3D effect */
+  }
+
+  #background > :nth-child(1){
+    animation: spinCube 38s ease-out infinite;
+  }
+  #background > :nth-child(2){
+    animation: spinCube 42s ease-out infinite;
+  }
+  #background > :nth-child(3){
+    animation: spinCube 46s ease-out infinite;
+  }
+  #background > :nth-child(4){
+    animation: spinCube 55s ease-out infinite;
+  }
+  .cube {
+    position: absolute;
+    padding:5em;
+    width: 100vw;
+    height: 80vh;
+    margin: 0 auto;
+    background-color: rgba(12, 28, 53, 0.236);
+    text-align: center;
+    text-align-last: center;
+  }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes slideInLeft {
+    0% { transform: translateX(-50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes slideInRight {
+    0% { transform: translateX(50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes spinCube {
+    0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+    100% { transform: rotateX(360deg) rotateY(440deg) rotateZ(360deg); }
+  }
+
+  #link-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  #link-container a {
+    color: #80cfff; /* Azure light blue */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  #link-container a:hover {
+    color: #5aa8dd; /* Darker blue on hover */
+  }
+
+  #link-container a:active {
+    color: #3a7aa4; /* Even darker blue on click */
+  }
+</style>
+</head>
+<body>
+<div id="background">
+  <div class="cube">CODE-MNA</div>
+  <div class="cube">MNA-CODE</div>
+  <div class="cube">CD_MNA</div>
+  <div class="cube">MNA</div>
+</div>
+<div class="container">
+  <h2>POSTER BACKEND</h2>
+  <br>
+  <p>You successfully verified your account, You can now close this window and login.</p>
+</div>
+<div id="link-container">
+  <a href={{FRONTEND_URL}} target="_blank">Visit Poster Website</a>
+</div>
+</body>
+</html>

@@ -154,9 +154,11 @@ module.exports = {
                 user.refreshToken = generateRefreshToken({id:user.id})
                 await user.save()
 
-                res.status(200).send(`<h2>POSTER BACKEND</h2> <br> <p>You successfully verified your account, You can now close this window and login.</p>`)
+                res.status(200).render("poster-verify-success.html",{
+                    FRONTEND_URL:process.env.FRONTEND_URL
+                })
             }else{
-                res.status(400).send(`<h2>POSTER BACKEND</h2> <br> <p>Verification failed, Please Try logging again if you require the link again and try verification with a valid link. .</p>`)
+                res.render("poster-verify-fail.html")
             }
         }).catch(err =>{
             console.log(err.message)
@@ -207,14 +209,72 @@ var ProcessMail = async (user, BaseHostname)=>{
    const signed =  jwt.sign({id : user._id},process.env.VERIFY_SECRET,{expiresIn:"1h"})
 
    const verifyURL = `${BaseHostname}:${process.env.PORT}/auth/verify/${signed}`
-
+    const template = `<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  
+    body {
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #ddd; /* Darker grey */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #000; /* Dark background */
+    }
+  
+    .container {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.8); /* Dark with opacity */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  
+    h2 {
+      margin-top: 0;
+      color: #55aaff; /* Azure light blue */
+      font-size: 2.5em;
+    }
+  
+    p {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+  
+    a {
+      color: #80cfff; /* Azure light blue */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+  
+    a:hover {
+      color: #5aa8dd; /* Darker blue on hover */
+    }
+  
+    a:active {
+      color: #3a7aa4; /* Even darker blue on click */
+    }
+  </style>
+  </head>
+  <body>
+  <div class="container">
+    <h2>Welcome to Poster</h2>
+    <br>
+    <p>Thank you, ${user.name} for signing up!</p>
+    <p><a href=${verifyURL}> Click here to activate your Poster Account</a></p>
+  </div>
+  </body>
+  </html>`
     let errorMail = "";
     gmailMailer.sendMail({
         from: "Poster Activator"+ " " + process.env.EMAIL,
         to:user.email,
         subject:"Activate your Poster Account",
         text:"do something",
-        html:`<h2>Welcome to Poster</h2><br><p>Thank you, ${user.name} for signing up!</p><p><a href=${verifyURL}> Click here to activate your Poster Account</a></p>`
+        html:template
     }).catch(err => {
 
       errorMail = err.message
