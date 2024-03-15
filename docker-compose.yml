@@ -3,11 +3,16 @@ services:
     container_name: node-api
     build: .
     ports:
-      - 8080:8080
+      - ${PORT}:${PORT}
     environment:
-      PORT: 8080
-      ACCESS_SECRET: yourrandomaccesssecrethere
-      DB_PATH : mongodb://db/mockmongodb 
+       - ACCESS_SECRET=/run/secrets/access_secret
+       - REFRESH_SECRET=/run/secrets/refresh_secret
+       - VERIFY_SECRET=/run/secrets/verify_secret
+       - DB_PATH=/run/secrets/db_path
+       - EMAIL=/run/secrets/sender_email
+       - EMAILPASS=/run/secrets/email_pass
+       - FRONTEND_URL=${FRONTEND_URL}
+       - PORT=${PORT}
     
   
   db:
@@ -17,6 +22,21 @@ services:
       - 27017:27017
     volumes:
       - mongodb:/data/db
+
+secrets:
+  access_secret:
+    external: true
+  refresh_secret:
+    external: true
+  verify_secret:
+    external: true
+  db_path:
+    external: true
+  sender_email:
+    external: true
+  email_pass:
+    external: true
+
 
 volumes:
   mongodb:
